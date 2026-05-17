@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280">
+  <rect width="800" height="280" fill="#0f172a" rx="18"/>
+  <text x="40" y="60" fill="#f8fafc" font-family="Arial, sans-serif" font-size="24">Project map</text>
+  <text x="60" y="110" fill="#38bdf8" font-family="monospace" font-size="18">/workspaces/Xinamine</text>
+  <text x="100" y="140" fill="#cbd5e1" font-family="monospace" font-size="18">Makefile</text>
+  <text x="100" y="170" fill="#cbd5e1" font-family="monospace" font-size="18">control</text>
+  <text x="100" y="200" fill="#cbd5e1" font-family="monospace" font-size="18">README.md</text>
+  <text x="100" y="230" fill="#cbd5e1" font-family="monospace" font-size="18">packages/</text>
+  <text x="120" y="260" fill="#a5b4fc" font-family="monospace" font-size="18">emt.moeite.xinamine_0.0.1_iphoneos-arm64e.deb</text>
+  <text x="100" y="260" fill="#cbd5e1" font-family="monospace" font-size="18">Tweak/</text>
+</svg>

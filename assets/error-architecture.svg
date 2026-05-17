@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320">
+  <rect width="800" height="320" fill="#111827" rx="18"/>
+  <text x="40" y="60" fill="#fecaca" font-family="Arial, sans-serif" font-size="24">Foutmelding</text>
+  <rect x="40" y="90" width="720" height="190" fill="#1f2937" rx="12"/>
+  <text x="60" y="130" fill="#fca5a5" font-family="monospace" font-size="18">dpkg: error processing archive ...</text>
+  <text x="60" y="160" fill="#fca5a5" font-family="monospace" font-size="18">package architecture (iphoneos-arm64) does not match system (iphoneos-arm64e)</text>
+  <text x="60" y="190" fill="#ffffff" font-family="monospace" font-size="18">Fix: set Architecture: iphoneos-arm64e in control</text>
+  <text x="60" y="220" fill="#ffffff" font-family="monospace" font-size="18">and rebuild package with `make package`</text>
+</svg>

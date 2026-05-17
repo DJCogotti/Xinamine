@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <rect width="800" height="300" fill="#0d1117" rx="20"/>
+  <text x="40" y="60" fill="#c9d1d9" font-family="Arial, sans-serif" font-size="24">Theos build output</text>
+  <rect x="40" y="90" width="720" height="160" fill="#161b22" rx="12"/>
+  <text x="60" y="130" fill="#8b949e" font-family="monospace" font-size="18">$ cd /workspaces/Xinamine</text>
+  <text x="60" y="160" fill="#8b949e" font-family="monospace" font-size="18">$ make package</text>
+  <text x="60" y="190" fill="#8bffa5" font-family="monospace" font-size="18">dm.pl: building package `emt.moeite.xinamine:iphoneos-arm64e`</text>
+  <text x="60" y="220" fill="#8bffa5" font-family="monospace" font-size="18">./packages/emt.moeite.xinamine_0.0.1_iphoneos-arm64e.deb</text>
+</svg>
