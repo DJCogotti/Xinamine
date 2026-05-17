@@ -1,3 +1,7 @@
+# Fallback Theos installation path when environment variables are not set
+THEOS ?= $(HOME)/theos
+THEOS_MAKE_PATH ?= $(THEOS)/makefiles
+
 # Basic environment configuration
 
 export SYSROOT = $(THEOS)/sdks/iPhoneOS16.0.sdk/
