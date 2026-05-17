@@ -1,95 +1,95 @@
 # Moeite
 
-`Moeite` is een Theos-tweak die compatibiliteit toevoegt voor Xina-gepatchte tweaks in Dopamine.
+`Moeite` is a Theos tweak that adds compatibility for Xina-patched tweaks in Dopamine.
 
-## Wat doet dit project?
+## What does this project do?
 
-- Bouwt een rootless Debian-package voor iOS
-- Ondersteunt `iphoneos-arm64e` apparaten zoals iPhone 12 Pro Max op iOS 16.x
-- Verwijdert oude package-architectuurproblemen en past metadata aan voor correcte installatie
+- Builds a rootless Debian package for iOS
+- Supports `iphoneos-arm64e` devices such as iPhone 12 Pro Max on iOS 16.x
+- Fixes package architecture issues and updates metadata for correct installation
 
-## Projectstructuur
+## Project structure
 
-- `Makefile` - hoofd Makefile voor het bouwen van de Theos-package
-- `control` - Debian metadata voor de package
-- `Tweak/Makefile` - Theos-tweak buildconfiguratie
-- `Tweak/Sources/` - broncode van de tweak
-- `packages/` - output .deb package na een succesvolle build
+- `Makefile` - main Makefile to build the Theos package
+- `control` - Debian package metadata
+- `Tweak/Makefile` - Theos tweak build configuration
+- `Tweak/Sources/` - tweak source files
+- `packages/` - output `.deb` package after a successful build
 
-## Vereisten
+## Requirements
 
-- Theos geïnstalleerd en bereikbaar via `$(HOME)/theos` of `THEOS` environment variable
-- iPhoneOS SDK beschikbaar in `$(THEOS)/sdks/iPhoneOS16.5.sdk`
-- `dpkg` / `apt` op het jailbreak-apparaat voor installatie
-- iOS-apparaat met `arm64e` (bijv. iPhone 12 Pro Max) en een compatibele jailbreak
+- Theos installed and accessible via `$(HOME)/theos` or the `THEOS` environment variable
+- iPhoneOS SDK available in `$(THEOS)/sdks/iPhoneOS16.5.sdk`
+- `dpkg` / `apt` on the jailbreak device for installation
+- An iOS device with `arm64e` support (for example iPhone 12 Pro Max) and a compatible jailbreak
 
-## Belangrijke metadata
+## Important metadata
 
 - Package ID: `emt.moeite.xinamine`
-- Naam: `Moeite`
-- Versie: `0.0.1`
-- Architectuur: `iphoneos-arm64e`
-- Afhankelijkheden: `ellekit`, `oldabi | cy+cpu.arm64`, `firmware (>= 15.0)`
+- Name: `Moeite`
+- Version: `0.0.1`
+- Architecture: `iphoneos-arm64e`
+- Depends: `ellekit`, `oldabi | cy+cpu.arm64`, `firmware (>= 15.0)`
 
-## Bouwen en installeren
+## Build and install
 
-1. Open een terminal in de projectroot:
+1. Open a terminal in the project root:
 
 ```bash
 cd /workspaces/Xinamine
 ```
 
-2. Controleer of Theos en de SDK beschikbaar zijn:
+2. Check that Theos and the SDK are available:
 
 ```bash
 echo $THEOS
 ls "$THEOS/sdks/iPhoneOS16.5.sdk"
 ```
 
-3. Bouw de package:
+3. Build the package:
 
 ```bash
 make package
 ```
 
-4. Na een geslaagde build vind je de `.deb` in:
+4. After a successful build, the `.deb` is available at:
 
 ```bash
 packages/emt.moeite.xinamine_0.0.1_iphoneos-arm64e.deb
 ```
 
-5. Kopieer de `.deb` naar je toestel en installeer met `dpkg -i`:
+5. Copy the `.deb` to your device and install it with `dpkg -i`:
 
 ```bash
 dpkg -i /path/to/emt.moeite.xinamine_0.0.1_iphoneos-arm64e.deb
 ```
 
-6. Herstart het apparaat of refresh de tweak-omgeving als dat nodig is.
+6. Reboot the device or refresh the tweak environment if needed.
 
-## Problemen oplossen
+## Troubleshooting
 
 - `package name has characters that aren't lowercase alphanums or '-+.'`:
-  - Gebruik alleen lowercase letters, cijfers, `.` `-` of `+` in `control`
+  - Use only lowercase letters, digits, `.` `-` or `+` in `control`
 - `package architecture does not match system`:
-  - Controleer dat `Architecture` in `control` op `iphoneos-arm64e` staat
-- Indien `Theos` ontbreekt:
-  - Stel `THEOS` in op je Theos-installatiemap of installeer Theos eerst
+  - Verify that `Architecture` in `control` is set to `iphoneos-arm64e`
+- If `Theos` is missing:
+  - Set `THEOS` to your Theos installation path or install Theos first
 
-## Aanpassen van naam en package-id
+## Changing the name and package ID
 
-- Als je de zichtbare appnaam wilt wijzigen, pas dan `Name:` in `control` aan
-- Voor de interne package-ID wijzig je `Package:` in `control`
+- To change the visible display name, edit `Name:` in `control`
+- To change the internal package ID, edit `Package:` in `control`
 
-## Aanbevolen workflow
+## Recommended workflow
 
-1. Pas bestandsnamen en metadata aan in `control`
-2. Bouw met `make package`
-3. Test op je iPhone met `dpkg -i`
-4. Herhaal voor fixes
+1. Update file names and metadata in `control`
+2. Build with `make package`
+3. Test on your iPhone with `dpkg -i`
+4. Repeat for fixes
 
-## Uitlegplaatjes (visuele ondersteuning)
+## Visual guide
 
-Hieronder staan voorbeeldillustraties die je kunt gebruiken in de README of documentatie.
+Below are example illustrations you can use in the README or other documentation.
 
 ### Theos build output
 
@@ -99,18 +99,18 @@ Hieronder staan voorbeeldillustraties die je kunt gebruiken in de README of docu
 
 ![Control metadata](assets/control-metadata.svg)
 
-### Installatie op apparaat
+### Device installation
 
-![Installatie op apparaat](assets/install-ios.svg)
+![Device installation](assets/install-ios.svg)
 
-### Foutmelding architectuur mismatch
+### Architecture mismatch error
 
-![Foutmelding architectuur mismatch](assets/error-architecture.svg)
+![Architecture mismatch error](assets/error-architecture.svg)
 
-### Projectstructuur
+### Project structure
 
-![Projectstructuur](assets/file-structure.svg)
+![Project structure](assets/file-structure.svg)
 
 ---
 
-*Opmerking:* de package-bestandsnaam wordt afgeleid van `Package`, `Version` en `Architecture`, dus een goede `Package:` waarde voorkomt installatieproblemen.
+*Note:* The package file name is derived from `Package`, `Version`, and `Architecture`, so a correct `Package:` value prevents installation issues.
