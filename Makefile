@@ -40,5 +40,5 @@ before-package::
 	@$(PRINT_FORMAT_MAKING) "Fixing Debian maintainer script permissions"
 	$(ECHO_NOTHING)chmod 755 "$(THEOS_STAGING_DIR)/DEBIAN/postinst"$(ECHO_END)
 	@$(PRINT_FORMAT_MAKING) "Patching control file architecture"
-	$(ECHO_NOTHING)sed -i 's/iphoneos-arm/iphoneos-arm64/' "$(THEOS_STAGING_DIR)/DEBIAN/control"$(ECHO_END)
+	$(ECHO_NOTHING)sed -i 's/^Architecture: iphoneos-arm$$/Architecture: iphoneos-arm64e/' "$(THEOS_STAGING_DIR)/DEBIAN/control"$(ECHO_END)
 endif
