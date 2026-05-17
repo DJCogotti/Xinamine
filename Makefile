@@ -4,7 +4,7 @@ THEOS_MAKE_PATH ?= $(THEOS)/makefiles
 
 # Basic environment configuration
 
-export SYSROOT = $(THEOS)/sdks/iPhoneOS16.0.sdk/
+export SYSROOT = $(THEOS)/sdks/iPhoneOS16.5.sdk/
 export TARGET = iphone:clang:latest:15.0
 export ROOTLESS = 1
 
@@ -29,10 +29,16 @@ include $(THEOS_MAKE_PATH)/aggregate.mk
 ifeq ($(ROOTLESS),1)
 internal-stage::
 	@$(PRINT_FORMAT_MAKING) "Moving files to rootless paths"
-	$(ECHO_NOTHING)mkdir -p "$(THEOS_STAGING_DIR)/var/jb/Library"$(ECHO_END)
-	$(ECHO_NOTHING)mv "$(THEOS_STAGING_DIR)/Library" "$(THEOS_STAGING_DIR)/var/jb"$(ECHO_END)
+	@mkdir -p "$(THEOS_STAGING_DIR)/var/jb/Library"
+	@if [ -d "$(THEOS_STAGING_DIR)/Library" ]; then \
+		mv "$(THEOS_STAGING_DIR)/Library" "$(THEOS_STAGING_DIR)/var/jb"; \
+	fi
 
 before-package::
+	@$(PRINT_FORMAT_MAKING) "Fixing Debian control directory permissions"
+	$(ECHO_NOTHING)chmod 755 "$(THEOS_STAGING_DIR)/DEBIAN"$(ECHO_END)
+	@$(PRINT_FORMAT_MAKING) "Fixing Debian maintainer script permissions"
+	$(ECHO_NOTHING)chmod 755 "$(THEOS_STAGING_DIR)/DEBIAN/postinst"$(ECHO_END)
 	@$(PRINT_FORMAT_MAKING) "Patching control file architecture"
-	$(ECHO_NOTHING)sed -i '' 's/iphoneos-arm/iphoneos-arm64/' "$(THEOS_STAGING_DIR)/DEBIAN/control"$(ECHO_END)
+	$(ECHO_NOTHING)sed -i 's/iphoneos-arm/iphoneos-arm64/' "$(THEOS_STAGING_DIR)/DEBIAN/control"$(ECHO_END)
 endif

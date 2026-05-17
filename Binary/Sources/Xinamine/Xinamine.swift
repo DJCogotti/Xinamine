@@ -2,17 +2,19 @@ import Darwin
 
 @main
 struct Xinamine {
+    static let markerPath = "/var/jb/.xinamine_installed"
+
     static func main() {
         setuid(0)
         setgid(0)
-        
-        guard access("/var/LIY", F_OK) != 0 else {
+
+        guard access(markerPath, F_OK) != 0 else {
             return
         }
-        
+
         rmdir("/var/lib")
         mkdir("/var/jb/User/Library", S_IRWXU | S_IRWXG | S_IRWXO)
-        
+
         let symlinks: [(String, String)] = [
             ("/var/jb/usr/lib", "/var/lib"),
             ("/var/jb/usr/lib", "/var/Lib"),
@@ -32,7 +34,12 @@ struct Xinamine {
             ("/var/jb/var/mobile", "/var/jb/vmo"),
             ("/var/jb/usr/bin/bash", "/var/bash")
         ]
-        
+
         _ = symlinks.map { symlink($0.0, $0.1) }
+
+        let fd = open(markerPath, O_CREAT | O_WRONLY, 0o644)
+        if fd >= 0 {
+            close(fd)
+        }
     }
 }
